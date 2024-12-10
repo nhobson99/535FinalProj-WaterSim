@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://jkm726ll1jtf"]
+
+[ext_resource type="Script" path="res://sphere_prefab.gd" id="1_ud02n"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5utw5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sqxfq"]
+radius = 0.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_kr72r"]
+radius = 0.1
+height = 0.2
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jubal"]
+depth_draw_mode = 1
+shading_mode = 2
+albedo_color = Color(0.5575, 0.55, 1, 1)
+
+[node name="SpherePrefab" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_5utw5")
+can_sleep = false
+linear_damp = 1.0
+script = ExtResource("1_ud02n")
+metadata/hash = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_sqxfq")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_kr72r")
+material = SubResource("StandardMaterial3D_jubal")
